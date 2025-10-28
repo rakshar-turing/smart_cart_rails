@@ -2,14 +2,14 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized, except: %i[index show]
+  before_action :set_product, only: %i[show]
 
   def index
     @products = policy_scope(Product)
   end
 
   def show
-    @product = Product.find(params[:id])
-    authorize @product
+    @recommended_products = @product.similar_products
   end
 
   def new
@@ -31,5 +31,10 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :price)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
+    authorize @product
   end
 end

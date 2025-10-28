@@ -16,4 +16,18 @@ RSpec.describe "Products", type: :request do
     get product_path(product)
     expect(response.body).to include("Phone")
   end
+
+  describe "GET /products" do
+    it "renders product names when products exist" do
+      create(:product, name: "Laptop")
+      get products_path
+      expect(response.body).to include("Laptop")
+    end
+  
+    it "renders empty state when no products exist" do
+      get products_path
+      expect(response.body).to include("Product Catalog")
+      expect(response.body).not_to include("Laptop")
+    end
+  end
 end
