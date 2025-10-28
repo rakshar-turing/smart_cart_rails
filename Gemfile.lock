@@ -81,6 +81,7 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     base64 (0.3.0)
+    bcrypt (3.1.20)
     benchmark (0.5.0)
     bigdecimal (3.3.1)
     bindex (0.8.1)
@@ -99,14 +100,31 @@ GEM
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
     crass (1.0.6)
+    database_cleaner-active_record (2.2.2)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0)
+    database_cleaner-core (2.0.1)
     date (3.4.1)
     debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    devise (4.9.4)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     diff-lcs (1.6.2)
     drb (2.2.3)
     erb (5.1.3)
     erubi (1.13.1)
+    factory_bot (6.5.6)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.5.1)
+      factory_bot (~> 6.5)
+      railties (>= 6.1.0)
+    faker (3.5.2)
+      i18n (>= 1.8.11, < 2)
     globalid (1.3.0)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -151,6 +169,7 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
+    orm_adapter (0.5.0)
     pg (1.6.2-x86_64-linux)
     pp (0.6.3)
       prettyprint
@@ -161,6 +180,13 @@ GEM
     public_suffix (6.0.2)
     puma (7.1.0)
       nio4r (~> 2.0)
+    pundit (2.5.2)
+      activesupport (>= 3.0.0)
+    pundit-matchers (3.0.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
     racc (1.8.1)
     rack (3.2.3)
     rack-session (2.1.1)
@@ -207,6 +233,9 @@ GEM
     regexp_parser (2.11.3)
     reline (0.6.2)
       io-console (~> 0.5)
+    responders (3.2.0)
+      actionpack (>= 7.0)
+      railties (>= 7.0)
     rexml (3.4.4)
     rspec-core (3.13.6)
       rspec-support (~> 3.13.0)
@@ -252,6 +281,8 @@ GEM
       railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -272,11 +303,17 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  database_cleaner-active_record
   debug
+  devise
+  factory_bot_rails
+  faker
   importmap-rails
   jbuilder
   pg (~> 1.1)
   puma (>= 5.0)
+  pundit
+  pundit-matchers (~> 3.0.1)
   rails (~> 7.1.5, >= 7.1.5.2)
   rspec-rails
   selenium-webdriver

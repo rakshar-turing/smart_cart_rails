@@ -51,8 +51,15 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'database_cleaner-active_record'
+  gem 'pundit-matchers', '~> 3.0.1'
 end
 
+# Authentication
+gem 'devise'
+gem 'pundit'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
