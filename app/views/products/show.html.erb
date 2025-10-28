@@ -1,3 +1,18 @@
+<!-- app/views/products/show.html.erb -->
+
 <h1><%= @product.name %></h1>
-<p>Price: <%= @product.formatted_price %></p>
-<p><%= link_to "Back", products_path %></p>
+<p><%= @product.description %></p>
+<p><strong>Price:</strong> <%= number_to_currency(@product.price) %></p>
+
+<hr>
+
+<h3>You might also like:</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
+  <% @recommended_products.each do |p| %>
+    <div class="border p-2 rounded-lg shadow hover:shadow-lg transition">
+      <h4><%= link_to p.name, product_path(p) %></h4>
+      <p><%= truncate(p.description, length: 60) %></p>
+      <p><strong><%= number_to_currency(p.price) %></strong></p>
+    </div>
+  <% end %>
+</div>

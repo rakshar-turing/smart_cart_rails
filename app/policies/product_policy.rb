@@ -2,11 +2,7 @@
 class ProductPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.admin? || user.manager?
-        scope.all
-      else
-        scope.none
-      end
+      user.present? ? scope.all : scope.none
     end
   end
   
