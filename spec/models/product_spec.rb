@@ -35,4 +35,28 @@ RSpec.describe Product, type: :model do
       expect(item.similar_products).to include(similar)
     end
   end
+
+  describe 'low stock notifications' do
+    let(:product) { create(:product, stock: 10, low_stock_threshold: 5) }
+
+    it 'enqueues a notification job when stock falls below threshold' do
+      ActiveJob::Base.queue_adapter = :test
+      expect {
+        product.update!(stock: 4)
+      }.to have_enqueued_job(SendLowStockNotificationJob).with(product.id)
+    end
+
+    it 'does not enqueue when stock decreases but remains above threshold' do
+      expect {
+        product.update!(stock: 6)
+      }.not_to have_enqueued_job(SendLowStockNotificationJob)
+    end
+
+    it 'does not enqueue when stock decreases but remains above threshold' do
+      ActiveJob::Base.queue_adapter = :test
+      expect {
+        product.update!(stock: 6)
+      }.not_to have_enqueued_job(SendLowStockNotificationJob)
+    end
+  end
 end

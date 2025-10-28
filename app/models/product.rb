@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   validates :name, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
+  after_save :enqueue_low_stock_check, if: :saved_change_to_stock?
 
   def formatted_price
     "$#{'%.2f' % price}"
@@ -19,6 +20,17 @@ class Product < ApplicationRecord
       Product.where("name ILIKE ?", "%#{keyword}%")
              .where.not(id: id)
              .limit(limit)
+    end
+  end
+
+  def low_stock?
+    stock.present? && stock <= low_stock_threshold
+  end
+
+  def enqueue_low_stock_check
+    # If stocked low, enqueue the job to perform notification & webhook handling
+    if low_stock?
+      SendLowStockNotificationJob.perform_later(id)
     end
   end
 end

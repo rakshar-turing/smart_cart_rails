@@ -5,6 +5,10 @@ class ProductPolicy < ApplicationPolicy
       user.present? ? scope.all : scope.none
     end
   end
+
+  def low_stock?
+    user.admin?
+  end
   
   def index?
     user.present? # allow all logged-in users

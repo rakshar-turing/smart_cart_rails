@@ -5,4 +5,12 @@ Rails.application.routes.draw do
   # resources :products, only: [:index]
   
   root "products#index" # Optional: make the product list your homepage
+
+  namespace :admin do
+    resources :products, only: [] do
+      collection do
+        get :low_stock
+      end
+    end
+  end
 end

@@ -1,0 +1,14 @@
+<h1>Low Stock Products</h1>
+
+<table>
+  <thead><tr><th>Product</th><th>Stock</th><th>Threshold</th><th></th></tr></thead>
+  <tbody>
+    <% @products.each do |p| %>
+      <tr>
+        <td><%= link_to p.name, product_path(p) %></td>
+        <td><%= p.stock %></td>
+        <td><%= p.low_stock_threshold %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

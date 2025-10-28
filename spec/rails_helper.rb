@@ -6,6 +6,8 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'pundit/rspec'
 require 'pundit/matchers'
+require 'webmock/rspec'
+WebMock.disable_net_connect!(allow_localhost: true)
 
 
 # FactoryBot and Devise setup
@@ -29,7 +31,6 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.allow_remote_database_url = true
-    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.around(:each) do |example|
