@@ -45,12 +45,3 @@ Rails console -> sudo docker-compose exec web rails console
 ## Features
 
 1️⃣ User Authentication & Roles Secure login/signup (Devise + JWT + Roles: Admin, Customer)
-2️⃣ Shopping Cart System Persistent cart per user (even for guests)
-3️⃣ Order Management Checkout flow, order history, and payments (Stripe)
-4️⃣ Admin Dashboard Manage products, categories, users (ActiveAdmin or custom dashboard)
-5️⃣ Inventory & Stock Tracking Auto-update stock on order, prevent overselling
-6️⃣ Background Jobs Use Sidekiq for sending order emails, async jobs
-7️⃣ API + Mobile Integration Provide REST/JSON APIs for mobile apps
-8️⃣ Search & Filters Full-text search with pg_search + filters by category/price
-9️⃣ Tests & CI/CD RSpec, FactoryBot, GitHub Actions integration
-🔟 Caching & Performance Redis caching for product listing
