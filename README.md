@@ -3,17 +3,17 @@ The first version includes basic product listing and management features — des
 
 ---
 
-## 🚀 Technical Overview
+## Technical Overview
 
-- 🧩 **Rails 7 MVC structure**
-- 🐳 **Dockerized development environment**
-- 🗃️ **PostgreSQL database**
-- 📦 Product model with attributes: `name`, `price`, and `description`
-- 🌱 Database seeds with sample products
-- ✅ RSpec test suite
-- ⚡ Ready for CI/CD or GitHub Actions integration
+- **Rails 7 MVC structure**
+- **Dockerized development environment**
+- **PostgreSQL database**
+- Product model with attributes: `name`, `price`
+- Database seeds with sample products
+- RSpec test suite
+- Ready for CI/CD or GitHub Actions integration
 
-## 🚀 Project structure
+## Project structure
 
 smart_cart_rails/
 ├── app/
@@ -39,12 +39,18 @@ smart_cart_rails/
 
 ## Commands
 
-To run rspec
+To run rspec -> sudo docker-compose exec web bundle exec rspec
+Rails console -> sudo docker-compose exec web rails console
 
-- sudo docker-compose exec web bundle exec rspec
+## Features
 
-Rails console
-
-- sudo docker-compose exec web rails console
-
-## 🚀 Features
+1️⃣ User Authentication & Roles Secure login/signup (Devise + JWT + Roles: Admin, Customer)
+2️⃣ Shopping Cart System Persistent cart per user (even for guests)
+3️⃣ Order Management Checkout flow, order history, and payments (Stripe)
+4️⃣ Admin Dashboard Manage products, categories, users (ActiveAdmin or custom dashboard)
+5️⃣ Inventory & Stock Tracking Auto-update stock on order, prevent overselling
+6️⃣ Background Jobs Use Sidekiq for sending order emails, async jobs
+7️⃣ API + Mobile Integration Provide REST/JSON APIs for mobile apps
+8️⃣ Search & Filters Full-text search with pg_search + filters by category/price
+9️⃣ Tests & CI/CD RSpec, FactoryBot, GitHub Actions integration
+🔟 Caching & Performance Redis caching for product listing
