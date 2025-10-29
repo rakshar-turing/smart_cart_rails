@@ -7,6 +7,7 @@ require 'rspec/rails'
 require 'pundit/rspec'
 require 'pundit/matchers'
 require 'webmock/rspec'
+require 'shoulda/matchers'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 
@@ -37,6 +38,13 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       example.run
     end
+  end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
   end
 end
 

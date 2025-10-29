@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotDefinedError, with: :policy_not_defined
 
   protected
 
@@ -26,5 +27,9 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(request.referer || root_path)
+  end
+
+  def policy_not_defined
+    render json: { error: "Policy not defined" }, status: :forbidden
   end
 end
