@@ -1,0 +1,18 @@
+<h1>Shared Cart</h1>
+
+<% if @cart.cart_items.any? %>
+  <ul>
+    <% @cart.cart_items.each do |item| %>
+      <li>
+        <%= item.product.name %> — <%= item.quantity %> × <%= number_to_currency(item.product.price) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <p><strong>Total:</strong> <%= number_to_currency(@cart.cart_items.sum { |i| i.quantity * i.product.price }) %></p>
+
+  <p class="text-muted">This is a shared view-only cart.</p>
+
+<% else %>
+  <p>This cart is empty.</p>
+<% end %>

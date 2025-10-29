@@ -56,6 +56,7 @@ group :development, :test do
   gem 'faker'
   gem 'database_cleaner-active_record'
   gem 'pundit-matchers', '~> 3.0.1'
+  gem 'shoulda-matchers', '~> 6.5'
 end
 
 # Authentication

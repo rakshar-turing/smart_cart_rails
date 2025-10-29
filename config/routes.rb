@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :shared_carts, only: [:create]
+  get '/shared_carts/:token', to: 'shared_carts#show', as: :shared_cart
+  
   devise_for :users
   resources :products
   # or just index-only if you want:
