@@ -1,0 +1,7 @@
+Low stock alert
+
+Product: <%= @product.name %>
+Current stock: <%= @product.stock %>
+Threshold: <%= @product.low_stock_threshold %>
+
+View product: <%= Rails.application.routes.url_helpers.product_url(@product, host: Rails.application.config.action_mailer.default_url_options[:host] || 'localhost') %>

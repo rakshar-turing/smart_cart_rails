@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_10_28_133404) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_28_184824) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_28_133404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category"
+    t.integer "stock", default: 0, null: false
+    t.integer "low_stock_threshold", default: 5, null: false
+    t.datetime "low_stock_notified_at"
+    t.string "webhook_url"
+    t.boolean "notified", default: false
+    t.index ["stock"], name: "index_products_on_stock"
   end
 
   create_table "users", force: :cascade do |t|

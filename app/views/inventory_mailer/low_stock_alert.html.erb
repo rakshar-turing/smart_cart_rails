@@ -1,0 +1,11 @@
+<h2>Low Stock Alert</h2>
+<p>
+  The product <strong><%= @product.name %></strong> is running low on stock.
+</p>
+<p>
+  Current stock: <%= @product.stock %><br>
+  Threshold: <%= @product.low_stock_threshold %>
+</p>
+<p>
+  Please restock soon.
+</p>
