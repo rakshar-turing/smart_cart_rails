@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   validates :role, inclusion: { in: ROLES }
 
+  has_many :carts, dependent: :destroy
+
   def admin?
     role == 'admin'
   end

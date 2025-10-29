@@ -1,0 +1,32 @@
+<h1>Your Shopping Cart</h1>
+
+<% if @cart.cart_items.any? %>
+  <ul>
+    <% @cart.cart_items.each do |item| %>
+      <li>
+        <%= item.product.name %> - <%= item.quantity %> × <%= number_to_currency(item.product.price) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <p><strong>Total:</strong> <%= number_to_currency(@cart.cart_items.sum { |i| i.quantity * i.product.price }) %></p>
+
+  <%= button_to "Checkout", checkout_path(@cart), method: :post, class: "btn btn-primary" %>
+
+  <hr>
+
+  <!-- Share Cart Section -->
+  <h3>Share your cart</h3>
+  <%= button_to "Generate Share Link", share_cart_path(@cart), method: :post, class: "btn btn-outline-secondary" %>
+
+  <% if @cart.share_token.present? %>
+    <p>
+      Share this link:
+      <input type="text" value="<%= @cart.shareable_link %>" readonly style="width: 80%;">
+      <button onclick="navigator.clipboard.writeText('<%= @cart.shareable_link %>')">Copy</button>
+    </p>
+  <% end %>
+
+<% else %>
+  <p>Your cart is empty.</p>
+<% end %>

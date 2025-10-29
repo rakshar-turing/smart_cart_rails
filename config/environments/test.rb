@@ -6,6 +6,11 @@ require "active_support/core_ext/integer/time"
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
+  config.consider_all_requests_local = true
+  config.action_dispatch.show_exceptions = false
+
+  config.log_level = :debug
+  config.logger = ActiveSupport::Logger.new("log/test.log", level: :debug)
   # Settings specified here will take precedence over those in config/application.rb.
 
   # While tests run files are not watched, reloading is not necessary.
