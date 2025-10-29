@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   devise_for :users
   resources :products
+  resources :carts, only: [:index, :show, :create, :destroy]
   # or just index-only if you want:
   # resources :products, only: [:index]
   
