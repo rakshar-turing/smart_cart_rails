@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     member do
       patch :cleanup, to: "cart_cleanups#cleanup"
       get :intent_suggestions, to: "cart_intents#suggestions"
+      get :quantity_suggestions, to: 'adaptive_quantities#suggestions'
     end
   end
   # or just index-only if you want:
