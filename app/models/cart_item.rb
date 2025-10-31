@@ -5,7 +5,6 @@ class CartItem < ApplicationRecord
 
   scope :discontinued, -> { where(is_discontinued: true) }
 
-  # Simulates detecting if an item is outdated compared to product catalog
   def outdated_version?
     latest_version = SmartCartCatalog.latest_version_for(product_name)
     latest_version.present? && latest_version != product_version

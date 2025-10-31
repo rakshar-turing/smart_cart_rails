@@ -9,10 +9,9 @@ Rails.application.routes.draw do
       patch :cleanup, to: "cart_cleanups#cleanup"
       get :intent_suggestions, to: "cart_intents#suggestions"
       get :quantity_suggestions, to: 'adaptive_quantities#suggestions'
+      get :trending_items, to: 'cart_trends#trending_items'
     end
   end
-  # or just index-only if you want:
-  # resources :products, only: [:index]
   
   root "products#index" # Optional: make the product list your homepage
 
