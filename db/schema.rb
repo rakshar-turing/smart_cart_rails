@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_10_29_212320) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_31_110106) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_29_212320) do
     t.integer "quantity", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "product_version"
+    t.boolean "is_discontinued", default: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
@@ -44,6 +46,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_29_212320) do
     t.datetime "low_stock_notified_at"
     t.string "webhook_url"
     t.boolean "notified", default: false
+    t.boolean "is_discontinued"
+    t.string "product_version"
     t.index ["stock"], name: "index_products_on_stock"
   end
 
