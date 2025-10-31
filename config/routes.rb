@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:index, :show, :create, :destroy] do
     member do
       patch :cleanup, to: "cart_cleanups#cleanup"
+      get :intent_suggestions, to: "cart_intents#suggestions"
     end
   end
   # or just index-only if you want:
