@@ -2,6 +2,13 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   after_save :enqueue_low_stock_check, if: :saved_change_to_stock?
+  has_many :cart_items
+
+  scope :active, -> { where(is_discontinued: false) }
+
+  def self.latest_version_for(name)
+    where(name: name, is_discontinued: false).order(created_at: :desc).first&.product_version || "1.0"
+  end
 
   def formatted_price
     "$#{'%.2f' % price}"

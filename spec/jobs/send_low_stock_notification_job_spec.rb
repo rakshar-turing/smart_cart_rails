@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SendLowStockNotificationJob, type: :job do
-  let!(:admin) { create(:user, :admin, email: Faker::Internet.unique.email) }
+  let!(:admin) { create(:user, :admin) }
   let!(:product) { create(:product, stock: 2, low_stock_threshold: 5) }
 
   before { ActionMailer::Base.deliveries.clear }

@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   
   devise_for :users
   resources :products
-  resources :carts, only: [:index, :show, :create, :destroy]
+  resources :carts, only: [:index, :show, :create, :destroy] do
+    member do
+      patch :cleanup, to: "cart_cleanups#cleanup"
+    end
+  end
   # or just index-only if you want:
   # resources :products, only: [:index]
   

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
   describe 'associations' do
+    let(:user) { create(:user) }
     it 'belongs to a user' do
-      user = User.create!(email: 'test@example.com', password: 'password')
       cart = Cart.create!(user: user, status: 'active')
       expect(cart.user).to eq(user)
     end
@@ -31,8 +31,8 @@ RSpec.describe Cart, type: :model do
   end
 
   describe 'callbacks' do
+    let(:user) { create(:user) }
     it 'defaults to "active" status when none is provided' do
-      user = User.create!(email: 'default_status@example.com', password: 'password')
       cart = Cart.create!(user: user) # no status passed
       expect(cart.status).to eq('active')
     end    
